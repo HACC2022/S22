@@ -1,0 +1,36 @@
+<% provide(:title, "Preview a Link") %>
+<div class="container">
+  <h1> Preview a Shortened Link </h1>
+  <h6>Use the search tool below to reveal the original URL of a shortened link. The "short code" is the last 6 characters of the shortened link. If the shortened link is <%= request.base_url + '/go/aA1bcD'%>, the short code is "aA1bcD".</h6>
+<%= form_with url: "/preview", method: :get do |form| %>
+  <%= form.label :query, "Enter Short Code (6 characters):", class:'form-control-row col-12' %>
+  <%= form.text_field :query, class: 'form-control-lg', placeholder: 'aA1bcD'%>
+  <%= form.submit "Search", class:'btn btn-primary' %>
+<% end %>
+
+<% if @search_initiated %>
+<div class="col">
+  </br>
+  <% if @link %>
+    <p> Matching URL found! </p>
+    <div class="card">
+      <div class="card-header">
+        <h4>Search Results for "<%= params[:query]%>"</h4>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <b>Short Code: </b><%= @link.short_code %> <br>
+          <b>Shortened Link: </b><%= request.base_url + '/go/' + @link.short_code %><br>
+          <b> Original URL: </b><%= @link.original_url %>
+        </li>
+        </ul>
+      </div>
+    </div>
+  <% else %>
+    No matching link found for "<%= params[:query]%>".
+  <% end %>
+  </div>
+<% end %>
+
+</div>

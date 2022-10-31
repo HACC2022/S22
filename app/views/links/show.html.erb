@@ -1,0 +1,20 @@
+<% provide(:title, "Link Details") %>
+<div class="container">
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+  <div class="card text-center">
+    <h4 class="card-header">Link Details</h4>
+    <div class="card-body">
+      <b>Shortened Link: </b><a href="<%= request.base_url + '/go/' + @link.short_code %>"></b><%= request.base_url + '/go/' + @link.short_code %></a><br>
+      <b>Short Code: </b> <%= @link.short_code %> <br>
+      <b>Original URL: </b><%= @link.original_url %> <br>
+      <b>Creation Date: </b><%= @link.created_at.in_time_zone("Hawaii").to_fs(:rfc822) %><br>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-12"><p margin: 10px> </p>
+    <%= link_to "Shorten another link!", new_link_path , class:'btn btn-primary'%>
+    </div>
+    </div>
+</div>

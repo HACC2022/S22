@@ -1,0 +1,11 @@
+<% provide(:title, "User Profile") %>
+<div class="container">
+  <div class="card text-center">
+    <h4 class="card-header"> Account Details</h4>
+    <div class="card-body">
+      <b>Name: </b> <%= @user.name %> <br>
+      <b>Email: </b><%= @user.email %> <br>
+      <b>Admin Privileges: </b> <% if @user.admin? %> Yes <% else %> No <% end %>
+    </div>
+  </div>
+</div>

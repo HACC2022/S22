@@ -1,0 +1,26 @@
+<% provide(:title, "Index") %>
+<div class="container">
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+  <div class="card">
+    <div class="card-header"> <h4>Index of Links</h4>
+      <h6 class="card-title"><%= pluralize(@links.count, "link") %></h6>
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <% @links.each do |link| %>
+        <li class="list-group-item">
+          <b>Short Code: </b><%= link.short_code %> <br>
+          <b>Shortened Link: </b><a href="<%= request.base_url + '/go/' + link.short_code %>"></b><%= request.base_url + '/go/' + link.short_code %></a><br>
+          <b> Original URL: </b><%= link.original_url %><br>
+          <%= link_to "Details", link, class:'btn btn-secondary'%>
+          <% if current_user.admin? %>
+          <%= link_to "Delete", link, data: {"turbo-method": :delete, turbo_confirm: "Are you sure you want to delete that link?"}, class:'btn btn-danger'%>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

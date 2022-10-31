@@ -1,0 +1,56 @@
+<% provide(:title, "Home") %>
+<div class="container">
+  <h4>Welcome to the URL Compressor App!</h4>
+<p>
+  This web application is designed to be a solution to the Enterprise Technology Services - URL Compressor Challenge in the  2022 Hawai'i Annual Code Challenge.
+</p>
+<br>
+<h5>Login Information</h5>
+Please use the following login information for these sample users to explore the features of the site:<br><br>
+<p>
+<b>Sample User with Admin Status:</b><br>
+Email: usera1@example.com<br>
+Password: a12345
+</p>
+<b>Sample Users without Admin Status:</b></br>
+Email: userb1@example.com<br>
+Password: b12345<br><br>
+
+Email: userc1@example.com<br>
+Password: c12345<br><br>
+
+  <h5>Site Features:</h5>
+  <ul>
+    <li><h6>Create a Short URL</h6></li>
+      <ul>
+        <li>Description: A user inputs a long URL into a form and the application creates a shortened URL. The shortened URL will begin with "<%= request.base_url + '/go/'%>" and will be followed by a string of 6 alphanumeric characters. </li>
+        <li>Access: Requires a logged in user</li>
+      </ul>
+    <li><h6>Preview A Link</h6></li>
+      <ul>
+        <li>Description: A user can look up the original URL of a shortened link by entering the last 6 characters of a shortened link into the form.
+        <li>Access: No log in is required for this feature</li>
+      </ul>
+    <li><h6>Search</h6></li>
+      <ul>
+        <li>Description: Allows a user to enter a long URL and see if there are any matching shortened links.
+        <li>Access: No log in is required for this feature</li>
+      </ul>
+    <li><h6>Index</h6></li>
+      <ul>
+        <li>Description: Displays a list of all created shortened links and their corresponding original long URL.
+        <li>Access: Requires a logged in user</li>
+      </ul>
+    <li><h6>Index with Delete Option</h6></li>
+        <ul>
+          <li>Description: Displays a list of all created shortened links with the option to delete any link.
+          <li>Access: Requires a logged in user with admin status</li>
+        </ul>
+    <li><h6>User Profile</h6></li>
+      <ul>
+        <li>Description: Displays the account details of a user
+        <li>Access: Requires a logged in user</li>
+      </ul>
+  </ul>
+
+</div>

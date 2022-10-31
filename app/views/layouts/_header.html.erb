@@ -1,0 +1,29 @@
+<div class="container">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+    URL Compressor
+    </a>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <% if logged_in? %>
+        <li><a href="<%= new_link_url %>" class="nav-link px-2 link-dark">Create a Short URL</a></li>
+        <li><a href="<%= preview_url %>" class="nav-link px-2 link-dark">Preview A Link</a></li>
+        <li><a href="<%= search_url %>" class="nav-link px-2 link-dark">Search</a></li>
+        <li><a href="<%= links_url %>" class="nav-link px-2 link-dark">Index</a></li>
+        <li><a href="<%= user_url(current_user) %>" class="nav-link px-2 link-dark">Account</a></li>
+      <% else %>
+        <li><a href="<%= preview_url %>" class="nav-link px-2 link-dark">Preview A Link</a></li>
+        <li><a href="<%= search_url %>" class="nav-link px-2 link-dark">Search</a></li>
+      <% end %>
+
+    </ul>
+
+    <div class="col-md-2 text-end">
+      <% if logged_in? %>
+        <%= link_to "Log Out", logout_path, data: {"turbo-method": :delete}, class:'btn btn-dark' %>
+      <% else %>
+        <a href="<%= login_path %>" class="btn btn-outline-primary me-2">Log In</a>
+      <% end %>
+    </div>
+  </header>
+</div>

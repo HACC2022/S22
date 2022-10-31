@@ -1,0 +1,38 @@
+<% provide(:title, "Search by Original URL") %>
+<div class="container">
+  <h1> Search by Original URL </h1>
+  <h6>Use the search tool below to check if a shortened link exists for a long URL.</h6>
+  <%= form_with url: "/search", method: :get do |form| %>
+    <%= form.label :query,"Enter a long URL:", class:'col-xs-2' %>
+    <%= form.text_field :query, class:'col-xs-8 col-md-8 col-lg-9'%>
+    <%= form.submit "Search", class:'btn btn-primary' %>
+  <% end %>
+
+  <% if @search_initiated %>
+    <div class="col">
+      </br>
+      <% if @links.count == 0 %>
+        A shortened link for the URL "<%= params[:query]%>" does not exist.
+      <% else %>
+        <p><%= pluralize(@links.count, "matching short link") %>!</p>
+        <div class="card">
+            <div class="card-header"> <h4>Search Results for</h4>
+            <h6 class="card-title">"<%= params[:query]%>"</h6> </div>
+          <div class="card-body">
+
+            <ul class="list-group list-group-flush">
+            <% @links.each do |link| %>
+              <li class="list-group-item">
+                <b>Short Code: </b><%= link.short_code %> <br>
+                <b>Shortened Link: </b><%= request.base_url + '/go/' + link.short_code %><br>
+                <b> Original URL: </b><%= link.original_url %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+<% end %>
+
+</div>
+</div>
